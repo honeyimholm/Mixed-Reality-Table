@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mixed Reality Table.CSharp", "Mixed Reality Table.CSharp.csproj", "{AD59FFD6-56EF-A8A2-0438-FED560B7C45E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD59FFD6-56EF-A8A2-0438-FED560B7C45E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD59FFD6-56EF-A8A2-0438-FED560B7C45E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD59FFD6-56EF-A8A2-0438-FED560B7C45E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD59FFD6-56EF-A8A2-0438-FED560B7C45E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

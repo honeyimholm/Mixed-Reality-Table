@@ -1,0 +1,773 @@
+fileFormatVersion: 2
+guid: d2335189537f74d479bf90b48fb8c95b
+timeCreated: 1507861591
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: axes_sprites_0
+    21300002: axes_sprites_1
+    21300004: axes_sprites_2
+    21300006: axes_sprites_3
+    21300008: axes_sprites_4
+    21300010: axes_sprites_5
+    21300012: axes_sprites_6
+    21300014: axes_sprites_7
+    21300016: axes_sprites_8
+    21300018: axes_sprites_9
+    21300020: axes_sprites_10
+    21300022: axes_sprites_11
+    21300024: axes_sprites_12
+    21300026: axes_sprites_13
+    21300028: axes_sprites_14
+    21300030: axes_sprites_15
+    21300032: axes_sprites_16
+    21300034: axes_sprites_17
+    21300036: axes_sprites_18
+    21300038: axes_sprites_19
+    21300040: axes_sprites_20
+    21300042: axes_sprites_21
+    21300044: axes_sprites_22
+    21300046: axes_sprites_23
+    21300048: axes_sprites_24
+    21300050: axes_sprites_25
+    21300052: axes_sprites_26
+    21300054: axes_sprites_27
+    21300056: axes_sprites_28
+    21300058: axes_sprites_29
+    21300060: axes_sprites_30
+    21300062: axes_sprites_31
+    21300064: axes_sprites_32
+    21300066: axes_sprites_33
+    21300068: axes_sprites_34
+    21300070: axes_sprites_35
+    21300072: axes_sprites_36
+    21300074: axes_sprites_37
+    21300076: axes_sprites_38
+    21300078: axes_sprites_39
+    21300080: axes_sprites_40
+    21300082: axes_sprites_41
+    21300084: axes_sprites_42
+    21300086: axes_sprites_43
+    21300088: axes_sprites_44
+    21300090: axes_sprites_45
+    21300092: axes_sprites_46
+    21300094: axes_sprites_47
+    21300096: axes_sprites_48
+    21300098: axes_sprites_49
+    21300100: axes_sprites_50
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: axes_sprites_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 923
+        width: 120
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_1
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 923
+        width: 120
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_2
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 923
+        width: 120
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_3
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 923
+        width: 120
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_4
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 918
+        width: 116
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_5
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 918
+        width: 116
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_6
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 918
+        width: 116
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_7
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 918
+        width: 118
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_8
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 783
+        width: 116
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_9
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 783
+        width: 116
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_10
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 783
+        width: 116
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_11
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 784
+        width: 116
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_12
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 790
+        width: 117
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_13
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 790
+        width: 117
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_14
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 790
+        width: 117
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_15
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 790
+        width: 117
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_16
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 656
+        width: 117
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_17
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 656
+        width: 117
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_18
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 656
+        width: 117
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_19
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 656
+        width: 117
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_20
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 657
+        width: 116
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_21
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 658
+        width: 116
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_22
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 657
+        width: 116
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_23
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 656
+        width: 116
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_24
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 528
+        width: 115
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_25
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 528
+        width: 115
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_26
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 528
+        width: 115
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_27
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 528
+        width: 115
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_28
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 528
+        width: 114
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_29
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 528
+        width: 114
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_30
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 528
+        width: 114
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_31
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 528
+        width: 114
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_32
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 400
+        width: 118
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_33
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 400
+        width: 118
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_34
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 400
+        width: 119
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_35
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 400
+        width: 119
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_36
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 399
+        width: 116
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_37
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 399
+        width: 115
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_38
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 399
+        width: 115
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_39
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 399
+        width: 115
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_40
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 269
+        width: 115
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_41
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 272
+        width: 114
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_42
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 272
+        width: 114
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_43
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 272
+        width: 120
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_44
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 272
+        width: 120
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_45
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 272
+        width: 118
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_46
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 269
+        width: 118
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_47
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 272
+        width: 116
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_48
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 147
+        width: 118
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_49
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 140
+        width: 118
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: axes_sprites_50
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 152
+        width: 118
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
