@@ -21,17 +21,15 @@ from os import path
 import select
 import os
 
-pipe_dir = '/home/odroid/test/testfifo'
-
 ## assets folder
 img_dir = path.join(path.dirname(__file__), 'assets')
 sound_folder = path.join(path.dirname(__file__), 'sounds')
 
 ###############################
 ## to be placed in "constant.py" later
-WIDTH = 960
-HEIGHT = 540
-FPS = 1
+WIDTH = 480
+HEIGHT = 600
+FPS = 60
 POWERUP_TIME = 5000
 BAR_LENGTH = 100
 BAR_HEIGHT = 10
@@ -120,7 +118,10 @@ def draw_lives(surf, x, y, lives, img):
         img_rect.y = y
         surf.blit(img, img_rect)
 
-
+def newObstacle(x, y,width,height):
+    obstacle_element = Obstacle(x,y,width,height)
+    all_sprites.add(obstacle_element)
+    obstacles.add(obstacle_element)
 
 def newmob():
     mob_element = Mob()
@@ -153,7 +154,7 @@ class Explosion(pygame.sprite.Sprite):
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, pnum):
         pygame.sprite.Sprite.__init__(self)
         ## scale the player img down
         self.image = pygame.transform.scale(player_img, (50, 38))
@@ -163,6 +164,8 @@ class Player(pygame.sprite.Sprite):
         self.rect.centerx = WIDTH / 2
         self.rect.bottom = HEIGHT - 10
         self.speedx = 0 
+        #adding movement in y direction
+        self.speedy = 0
         self.shield = 100
         self.shoot_delay = 250
         self.last_shot = pygame.time.get_ticks()
@@ -171,6 +174,8 @@ class Player(pygame.sprite.Sprite):
         self.hide_timer = pygame.time.get_ticks()
         self.power = 1
         self.power_timer = pygame.time.get_ticks()
+        self.player_num = pnum
+
 
     def update(self):
         ## time out for powerups
@@ -183,29 +188,67 @@ class Player(pygame.sprite.Sprite):
             self.hidden = False
             self.rect.centerx = WIDTH / 2
             self.rect.bottom = HEIGHT - 30
-
-        self.speedx = 0     ## makes the player static in the screen by default. 
+        #self stabilizing mechanism
+        '''if self.speedx>0:
+            self.speedx += -.1
+        else:
+            self.speedx += .1
+        if self.speedy>0:
+            self.speedy += -.1
+        else:
+            self.speedy += .1
+        '''   
         # then we have to check whether there is an event hanlding being done for the arrow keys being 
         ## pressed 
-
+        #TODO: acceleration
         ## will give back a list of the keys which happen to be pressed down at that moment
+        
         keystate = pygame.key.get_pressed()     
-        if keystate[pygame.K_LEFT]:
-            self.speedx = -5
-        elif keystate[pygame.K_RIGHT]:
-            self.speedx = 5
+        
+        if self.player_num == 1:
+            if keystate[pygame.K_LEFT]:
+                self.speedx = -7
+            elif keystate[pygame.K_RIGHT]:
+                self.speedx = 7
+            else:
+                self.speedx = 0
+            if keystate[pygame.K_UP]:
+                self.speedy = -7
+            elif keystate[pygame.K_DOWN]:
+                self.speedy = 7
+            else:
+                self.speedy = 0
+        else:
+            if keystate[pygame.K_a]:
+                self.speedx = -7
+            elif keystate[pygame.K_d]:
+                self.speedx = 7
+            else:
+                self.speedx = 0
+            if keystate[pygame.K_w]:
+                self.speedy = -7
+            elif keystate[pygame.K_s]:
+                self.speedy = 7
+            else:
+                self.speedy = 0
 
         #Fire weapons by holding spacebar
         if keystate[pygame.K_SPACE]:
             self.shoot()
 
-        ## check for the borders at the left and right
-        if self.rect.right > WIDTH:
-            self.rect.right = WIDTH
-        if self.rect.left < 0:
-            self.rect.left = 0
-
         self.rect.x += self.speedx
+        self.rect.y += self.speedy
+
+        ## check for the borders at the left and right, up down
+        if self.rect.right > WIDTH:
+            self.rect.right = WIDTH-1
+        if self.rect.left < 0:
+            self.rect.left = 1
+        if self.rect.top < 0:
+            self.rect.top = 1
+        if self.rect.bottom > HEIGHT:
+            self.rect.bottom = HEIGHT-1
+        
 
     def shoot(self):
         ## to tell the bullet where to spawn
@@ -260,11 +303,11 @@ class Mob(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.radius = int(self.rect.width *.90 / 2)
         self.rect.x = random.randrange(0, WIDTH - self.rect.width)
-        self.rect.y = random.randrange(-150, -100)
-        self.speedy = random.randrange(5, 20)        ## for randomizing the speed of the Mob
+        self.rect.y = random.randrange(0, HEIGHT-30)
+        self.speedy = 0#random.randrange(5, 20)        ## for randomizing the speed of the Mob
 
         ## randomize the movements a little more 
-        self.speedx = random.randrange(-3, 3)
+        self.speedx = 0#random.randrange(-3, 3)
 
         ## adding rotation to the mob element
         self.rotation = 0
@@ -291,7 +334,19 @@ class Mob(pygame.sprite.Sprite):
         if (self.rect.top > HEIGHT + 10) or (self.rect.left < -25) or (self.rect.right > WIDTH + 20):
             self.rect.x = random.randrange(0, WIDTH - self.rect.width)
             self.rect.y = random.randrange(-100, -40)
-            self.speedy = random.randrange(1, 8)        ## for randomizing the speed of the Mob
+            self.speedy = 0#random.randrange(1, 8)        ## for randomizing the speed of the Mob
+
+# defines the enemies
+class Obstacle(pygame.sprite.Sprite):
+    def __init__(self, x, y, width, height):
+        pygame.sprite.Sprite.__init__(self)
+        self.rect = pygame.Rect(x,y,width,height)
+        self.rect.x = x
+        self.rect.y = y
+        self.last_update = pygame.time.get_ticks()  ## time when the rotation has to happen
+
+    def update(self):
+        pass
 
 ## defines the sprite for Powerups
 class Pow(pygame.sprite.Sprite):
@@ -428,12 +483,17 @@ player_die_sound = pygame.mixer.Sound(path.join(sound_folder, 'rumble1.ogg'))
 
 ## group all the sprites together for ease of update
 all_sprites = pygame.sprite.Group()
-player = Player()
-all_sprites.add(player)
+player1 = Player(1)
+player2 = Player(2)
+players = [player1, player2]
+all_sprites.add(player1)
+all_sprites.add(player2)
+
+obstacles = pygame.sprite.Group()
 
 ## spawn a group of mob
 mobs = pygame.sprite.Group()
-for i in range(0):      ## 8 mobs
+for i in range(8):      ## 8 mobs
     # mob_element = Mob()
     # all_sprites.add(mob_element)
     # mobs.add(mob_element)
@@ -457,11 +517,10 @@ running = True
 menu_display = True
 with open(pipe_dir) as fifo:
     while running:
-	#receiving coordinates here
         if menu_display:
             main_menu()
             pygame.time.wait(3000)
-    
+
             #Stop menu music
             pygame.mixer.music.stop()
             #Play the gameplay music
@@ -476,7 +535,7 @@ with open(pipe_dir) as fifo:
             ## listening for the the X button at the top
             if event.type == pygame.QUIT:
                 running = False
-    
+
             ## Press ESC to exit game
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
@@ -485,11 +544,27 @@ with open(pipe_dir) as fifo:
             # elif event.type == pygame.KEYDOWN:
             #     if event.key == pygame.K_SPACE:
             #         player.shoot()      ## we have to define the shoot()  function
-    
+        #now we process our pipe data
+        line = fifo.read()
+        line = line.split('\n')
+        line = line[-2].strip()
+            if line: 
+                #print('line stripped')
+                #print(repr(line))
+            coordinates = line.split(",")
+                for i in range(0, len(coordinates), 4):
+                    tl_x = int(coordinates[i])
+                    tl_y = int(coordinates[i+1])
+                    br_x = int(coordinates[i+2])
+                    br_y = int(coordinates[i+3])
+                newObstacle(tl_x,tl_y,br_x-tl_x,br_y-tl_y)
+                pygame.draw.rect(screen,(255,0,0),(tl_x,tl_y,br_x-tl_x,br_y-tl_y),1)
+
+        
         #2 Update
         all_sprites.update()
-    
-    
+
+
         ## check if a bullet hit a mob
         ## now we have a group of bullets and a group of mob
         hits = pygame.sprite.groupcollide(mobs, bullets, True, True)
@@ -507,69 +582,89 @@ with open(pipe_dir) as fifo:
                 pow = Pow(hit.rect.center)
                 all_sprites.add(pow)
                 powerups.add(pow)
-            newmob()        ## spawn a new mob
-    
+            #newmob()        ## spawn a new mob
+
         ## ^^ the above loop will create the amount of mob objects which were killed spawn again
         #########################
-    
-        ## check if the player collides with the mob
-        hits = pygame.sprite.spritecollide(player, mobs, True, pygame.sprite.collide_circle)        ## gives back a list, True makes the mob element disappear
-        for hit in hits:
-            player.shield -= hit.radius * 2
-            expl = Explosion(hit.rect.center, 'sm')
-            all_sprites.add(expl)
-            newmob()
-            if player.shield <= 0: 
-                player_die_sound.play()
-                death_explosion = Explosion(player.rect.center, 'player')
-                all_sprites.add(death_explosion)
-                # running = False     ## GAME OVER 3:D
-                player.hide()
-                player.lives -= 1
-                player.shield = 100
-    
-        ## if the player hit a power up
-        hits = pygame.sprite.spritecollide(player, powerups, True)
-        for hit in hits:
-            if hit.type == 'shield':
-                player.shield += random.randrange(10, 30)
-                if player.shield >= 100:
+        for player in players:
+            ## check if the player collides with the obstacle
+            hits = pygame.sprite.spritecollide(player, obstacles, False, pygame.sprite.collide_circle)        ## gives back a list, True makes the mob element disappear
+            for hit in hits:
+                player.shield -= 10
+                #don't let the player move through the box
+                player.speedx = 0
+                player.speedy = 0
+                expl = Explosion(hit.rect.center, 'sm')
+                all_sprites.add(expl)
+                if player.shield <= 0: 
+                    player_die_sound.play()
+                    death_explosion = Explosion(player.rect.center, 'player')
+                    all_sprites.add(death_explosion)
+                    player.hide()
+                    player.lives -= 1
                     player.shield = 100
-            if hit.type == 'gun':
-                player.powerup()
-    
-        ## if player died and the explosion has finished, end game
-        if player.lives == 0 and not death_explosion.alive():
+            ## check if the player collides with the mob
+            hits = pygame.sprite.spritecollide(player, mobs, True, pygame.sprite.collide_circle)        ## gives back a list, True makes the mob element disappear
+            for hit in hits:
+                player.shield -= 10
+                #don't let the player move through the box
+                player.speedx = 0
+                player.speedy = 0
+                expl = Explosion(hit.rect.center, 'sm')
+                all_sprites.add(expl)
+                if player.shield <= 0: 
+                    player_die_sound.play()
+                    death_explosion = Explosion(player.rect.center, 'player')
+                    all_sprites.add(death_explosion)
+                    player.hide()
+                    player.lives -= 1
+                    player.shield = 100
+            #check if player got hit by another player's bullets
+            #or its own I guess haha
+            hits = pygame.sprite.spritecollide(player, bullets, True)
+            for hit in hits:
+                player.shield -= 10
+                expl = Explosion(hit.rect.center, 'sm')
+                all_sprites.add(expl)
+                if player.shield <= 0: 
+                    player_die_sound.play()
+                    death_explosion = Explosion(player.rect.center, 'player')
+                    all_sprites.add(death_explosion)
+                    player.hide()
+                    player.lives -= 1
+                    player.shield = 100
+            ## if the player hit a power up
+            hits = pygame.sprite.spritecollide(player, powerups, True)
+            for hit in hits:
+                if hit.type == 'shield':
+                    player.shield += random.randrange(10, 30)
+                    if player.shield >= 100:
+                        player.shield = 100
+                if hit.type == 'gun':
+                    player.powerup()
+            ## keep track of whose alive
+            if player.lives == 0 and not death_explosion.alive():
+                players.remove(player)
+        if len(players)==1:
+            #game over - only one player left
             running = False
-            # menu_display = True
-            # pygame.display.update()
-    
         #3 Draw/render
         screen.fill(BLACK)
         ## draw the stargaze.png image
         screen.blit(background, background_rect)
-        line = fifo.read()
-	line = line.split('\n')
-	line = line[-2].strip()
-        if line: 
-            #print('line stripped')
-            #print(repr(line))
-	    coordinates = line.split(",")
-            for i in range(0, len(coordinates), 4):
-                tl_x = int(coordinates[i])
-                tl_y = int(coordinates[i+1])
-                br_x = int(coordinates[i+2])
-                br_y = int(coordinates[i+3])
-	        pygame.draw.rect(screen,(255,0,0),(tl_x,tl_y,br_x-tl_x,br_y-tl_y),1)
-		#getting a lot of bounding boxes - let's just choose one
         all_sprites.draw(screen)
         draw_text(screen, str(score), 18, WIDTH / 2, 10)     ## 10px down from the screen
-        draw_shield_bar(screen, 5, 5, player.shield)
-    
+        draw_shield_bar(screen, 5, 5, player1.shield)
+
         # Draw lives
-        draw_lives(screen, WIDTH - 100, 5, player.lives, player_mini_img)
-    
+        draw_lives(screen, WIDTH - 100, 5, player1.lives, player_mini_img)
+
         ## Done after drawing everything to the screen
         pygame.display.flip()       
-    
+    #end screen
+    screen.fill(BLACK)
+    draw_text(screen, "Winner: Player "+str(players[0].player_num), 40, WIDTH/2, HEIGHT/2)
+    pygame.display.update()
+    pygame.time.wait(3000)
+    #back to main menu
 pygame.quit()
