@@ -54,6 +54,7 @@ clock = pygame.time.Clock()     ## For syncing the FPS
 ###############################
 
 font_name = pygame.font.match_font('arial')
+pipe_dir = '/home/odroid/test/testfifo'
 
 def main_menu():
     global screen
@@ -340,6 +341,9 @@ class Mob(pygame.sprite.Sprite):
 class Obstacle(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height):
         pygame.sprite.Sprite.__init__(self)
+        self.image_orig = random.choice(meteor_images)
+        self.image_orig.set_colorkey(BLACK)
+        self.image = self.image_orig.copy()
         self.rect = pygame.Rect(x,y,width,height)
         self.rect.x = x
         self.rect.y = y
@@ -493,11 +497,11 @@ obstacles = pygame.sprite.Group()
 
 ## spawn a group of mob
 mobs = pygame.sprite.Group()
-for i in range(8):      ## 8 mobs
+#for i in range(8):      ## 8 mobs
     # mob_element = Mob()
     # all_sprites.add(mob_element)
     # mobs.add(mob_element)
-    newmob()
+    #newmob()
 
 ## group for bullets
 bullets = pygame.sprite.Group()
@@ -547,18 +551,22 @@ with open(pipe_dir) as fifo:
         #now we process our pipe data
         line = fifo.read()
         line = line.split('\n')
-        line = line[-2].strip()
-            if line: 
-                #print('line stripped')
-                #print(repr(line))
+	error = False
+        try: 
+            line = line[-2].strip()
+        except:
+            error=True
+        if line and ~error and line[0]: 
+            print('line stripped')
+            print(repr(line))
             coordinates = line.split(",")
-                for i in range(0, len(coordinates), 4):
-                    tl_x = int(coordinates[i])
-                    tl_y = int(coordinates[i+1])
-                    br_x = int(coordinates[i+2])
-                    br_y = int(coordinates[i+3])
-                newObstacle(tl_x,tl_y,br_x-tl_x,br_y-tl_y)
-                pygame.draw.rect(screen,(255,0,0),(tl_x,tl_y,br_x-tl_x,br_y-tl_y),1)
+            for i in range(0, len(coordinates), 4):
+                tl_x = int(coordinates[i])
+                tl_y = int(coordinates[i+1])
+                br_x = int(coordinates[i+2])
+                br_y = int(coordinates[i+3])
+            newObstacle(tl_x,tl_y,br_x-tl_x,br_y-tl_y)
+            pygame.draw.rect(screen,(255,0,0),(tl_x,tl_y,br_x-tl_x,br_y-tl_y),1)
 
         
         #2 Update
@@ -651,7 +659,7 @@ with open(pipe_dir) as fifo:
         #3 Draw/render
         screen.fill(BLACK)
         ## draw the stargaze.png image
-        screen.blit(background, background_rect)
+        #screen.blit(background, background_rect)
         all_sprites.draw(screen)
         draw_text(screen, str(score), 18, WIDTH / 2, 10)     ## 10px down from the screen
         draw_shield_bar(screen, 5, 5, player1.shield)
