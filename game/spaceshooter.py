@@ -236,8 +236,8 @@ class Player(pygame.sprite.Sprite):
                 self.speedy = 7
             else:
                 self.speedy = 0
-            #Fire weapons by holding spacebar
-            if keystate[pygame.K_t]:
+            #Fire weapons by pressing 
+            if keystate[pygame.K_TAB]:
                 self.shoot()
 
 
