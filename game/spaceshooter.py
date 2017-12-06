@@ -548,6 +548,9 @@ with open(pipe_dir) as fifo:
             # elif event.type == pygame.KEYDOWN:
             #     if event.key == pygame.K_SPACE:
             #         player.shoot()      ## we have to define the shoot()  function
+        #clear all mob sprites
+        for m in mobs:
+            m.kill()
         #now we process our pipe data
         line = fifo.read()
         line = line.split('\n')
@@ -567,7 +570,7 @@ with open(pipe_dir) as fifo:
                 br_y = int(coordinates[i+3])
             newObstacle(tl_x,tl_y,br_x-tl_x,br_y-tl_y)
             pygame.draw.rect(screen,(255,0,0),(tl_x,tl_y,br_x-tl_x,br_y-tl_y),1)
-
+            pygame.display.update()
         
         #2 Update
         all_sprites.update()
