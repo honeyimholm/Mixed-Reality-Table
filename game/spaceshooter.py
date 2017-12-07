@@ -27,13 +27,13 @@ sound_folder = path.join(path.dirname(__file__), 'sounds')
 
 ###############################
 ## to be placed in "constant.py" later
-WIDTH = 960
-HEIGHT = 540
+WIDTH = 800
+HEIGHT = 600
 FPS = 60
 POWERUP_TIME = 5000
 BAR_LENGTH = 100
 BAR_HEIGHT = 10
-
+BUFFER_LEN = 30
 # Define Colors 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -119,10 +119,11 @@ def draw_lives(surf, x, y, lives, img):
         img_rect.y = y
         surf.blit(img, img_rect)
 
+
 def newObstacle(x, y,width,height):
     obstacle_element = Obstacle(x,y,width,height)
-    all_sprites.add(obstacle_element)
-    obstacles.add(obstacle_element)
+    #all_sprites.add(obstacle_element)
+    obstacles.append([obstacle_element, BUFFER_LEN])
 
 def newmob():
     mob_element = Mob()
@@ -219,6 +220,9 @@ class Player(pygame.sprite.Sprite):
                 self.speedy = 7
             else:
                 self.speedy = 0
+            #Fire weapons by holding spacebar
+            if keystate[pygame.K_RETURN]:
+                self.shoot()
         else:
             if keystate[pygame.K_a]:
                 self.speedx = -7
@@ -232,10 +236,9 @@ class Player(pygame.sprite.Sprite):
                 self.speedy = 7
             else:
                 self.speedy = 0
-
-        #Fire weapons by holding spacebar
-        if keystate[pygame.K_SPACE]:
-            self.shoot()
+            #Fire weapons by holding spacebar
+            if keystate[pygame.K_SPACE]:
+                self.shoot()
 
         self.rect.x += self.speedx
         self.rect.y += self.speedy
@@ -257,13 +260,13 @@ class Player(pygame.sprite.Sprite):
         if now - self.last_shot > self.shoot_delay:
             self.last_shot = now
             if self.power == 1:
-                bullet = Bullet(self.rect.centerx, self.rect.top)
+                bullet = Bullet(self.rect.centerx, self.rect.top, self.player_num)
                 all_sprites.add(bullet)
                 bullets.add(bullet)
                 shooting_sound.play()
             if self.power == 2:
-                bullet1 = Bullet(self.rect.left, self.rect.centery)
-                bullet2 = Bullet(self.rect.right, self.rect.centery)
+                bullet1 = Bullet(self.rect.left, self.rect.centery, self.player_num)
+                bullet2 = Bullet(self.rect.right, self.rect.centery, self.player_num)
                 all_sprites.add(bullet1)
                 all_sprites.add(bullet2)
                 bullets.add(bullet1)
@@ -272,9 +275,9 @@ class Player(pygame.sprite.Sprite):
 
             """ MOAR POWAH """
             if self.power >= 3:
-                bullet1 = Bullet(self.rect.left, self.rect.centery)
-                bullet2 = Bullet(self.rect.right, self.rect.centery)
-                missile1 = Missile(self.rect.centerx, self.rect.top) # Missile shoots from center of ship
+                bullet1 = Bullet(self.rect.left, self.rect.centery, self.player_num)
+                bullet2 = Bullet(self.rect.right, self.rect.centery, self.player_num)
+                missile1 = Missile(self.rect.centerx, self.rect.top, self.player_num) # Missile shoots from center of ship
                 all_sprites.add(bullet1)
                 all_sprites.add(bullet2)
                 all_sprites.add(missile1)
@@ -338,12 +341,12 @@ class Mob(pygame.sprite.Sprite):
             self.speedy = 0#random.randrange(1, 8)        ## for randomizing the speed of the Mob
 
 # defines the enemies
-class Obstacle(pygame.sprite.Sprite):
+class Obstacle():
     def __init__(self, x, y, width, height):
-        pygame.sprite.Sprite.__init__(self)
-        self.image_orig = random.choice(meteor_images)
-        self.image_orig.set_colorkey(BLACK)
-        self.image = self.image_orig.copy()
+        #pygame.sprite.Sprite.__init__(self)
+        #self.image_orig = random.choice(meteor_images)
+        #self.image_orig.set_colorkey(BLACK)
+        #self.image = self.image_orig.copy()
         self.rect = pygame.Rect(x,y,width,height)
         self.rect.x = x
         self.rect.y = y
@@ -375,7 +378,7 @@ class Pow(pygame.sprite.Sprite):
 
 ## defines the sprite for bullets
 class Bullet(pygame.sprite.Sprite):
-    def __init__(self, x, y):
+    def __init__(self, x, y, player_num):
         pygame.sprite.Sprite.__init__(self)
         self.image = bullet_img
         self.image.set_colorkey(BLACK)
@@ -383,7 +386,8 @@ class Bullet(pygame.sprite.Sprite):
         ## place the bullet according to the current position of the player
         self.rect.bottom = y 
         self.rect.centerx = x
-        self.speedy = -10
+        self.speedy = -20
+	self.player_num = player_num
 
     def update(self):
         """should spawn right in front of the player"""
@@ -398,7 +402,7 @@ class Bullet(pygame.sprite.Sprite):
 
 ## FIRE ZE MISSILES
 class Missile(pygame.sprite.Sprite):
-    def __init__(self, x, y):
+    def __init__(self, x, y, player_num):
         pygame.sprite.Sprite.__init__(self)
         self.image = missile_img
         self.image.set_colorkey(BLACK)
@@ -406,6 +410,7 @@ class Missile(pygame.sprite.Sprite):
         self.rect.bottom = y
         self.rect.centerx = x
         self.speedy = -10
+	self.player_num=player_num
 
     def update(self):
         """should spawn right in front of the player"""
@@ -493,7 +498,7 @@ players = [player1, player2]
 all_sprites.add(player1)
 all_sprites.add(player2)
 
-obstacles = pygame.sprite.Group()
+obstacles = []
 
 ## spawn a group of mob
 mobs = pygame.sprite.Group()
@@ -548,9 +553,13 @@ with open(pipe_dir) as fifo:
             # elif event.type == pygame.KEYDOWN:
             #     if event.key == pygame.K_SPACE:
             #         player.shoot()      ## we have to define the shoot()  function
-        #clear all mob sprites
-        for m in mobs:
-            m.kill()
+        #clear all obstacles using a buffer
+        obstacles_copy = obstacles
+        for o in obstacles_copy:
+	    o[1]=o[1]-1
+            if o[1]<=0:
+                obstacles.pop(0)
+            
         #now we process our pipe data
         line = fifo.read()
         line = line.split('\n')
@@ -559,18 +568,18 @@ with open(pipe_dir) as fifo:
             line = line[-2].strip()
         except:
             error=True
-        if line and ~error and line[0]: 
-            print('line stripped')
-            print(repr(line))
+        if line and not error and line[0]: 
+            #print('line stripped')
+            #print(repr(line))
             coordinates = line.split(",")
             for i in range(0, len(coordinates), 4):
                 tl_x = int(coordinates[i])
                 tl_y = int(coordinates[i+1])
                 br_x = int(coordinates[i+2])
                 br_y = int(coordinates[i+3])
-            newObstacle(tl_x,tl_y,br_x-tl_x,br_y-tl_y)
-            pygame.draw.rect(screen,(255,0,0),(tl_x,tl_y,br_x-tl_x,br_y-tl_y),1)
-            pygame.display.update()
+            	newObstacle(tl_x,tl_y,br_x-tl_x,br_y-tl_y)
+            #pygame.draw.rect(screen,(255,0,0),(tl_x,tl_y,br_x-tl_x,br_y-tl_y),1)
+            #pygame.display.update()
         
         #2 Update
         all_sprites.update()
@@ -597,23 +606,34 @@ with open(pipe_dir) as fifo:
 
         ## ^^ the above loop will create the amount of mob objects which were killed spawn again
         #########################
+        #now check if the bullet hit the obstacle
+        for bullet in bullets:
+            for obstacle in obstacles:
+                #check for collision
+                if obstacle[0].rect.colliderect(bullet.rect):
+                    #trigger explosion
+                    expl = Explosion(bullet.rect.center, 'sm')
+                    all_sprites.add(expl)
+                    #remove bullet
+                    bullet.kill()
         for player in players:
             ## check if the player collides with the obstacle
-            hits = pygame.sprite.spritecollide(player, obstacles, False, pygame.sprite.collide_circle)        ## gives back a list, True makes the mob element disappear
-            for hit in hits:
-                player.shield -= 10
-                #don't let the player move through the box
-                player.speedx = 0
-                player.speedy = 0
-                expl = Explosion(hit.rect.center, 'sm')
-                all_sprites.add(expl)
-                if player.shield <= 0: 
-                    player_die_sound.play()
-                    death_explosion = Explosion(player.rect.center, 'player')
-                    all_sprites.add(death_explosion)
-                    player.hide()
-                    player.lives -= 1
-                    player.shield = 100
+	    #hits = pygame.sprite.spritecollide(player, obstacles, False, pygame.sprite.collide_circle)        ## gives back a list, True makes the mob element disappear
+            for o in obstacles:
+                if o[0].rect.colliderect(player.rect):
+                    player.shield -= 100
+                    #don't let the player move through the box
+                    player.speedx = -player.speedx
+                    player.speedy = -player.speedy
+                    expl = Explosion(player.rect.center, 'sm')
+                    all_sprites.add(expl)
+                    if player.shield <= 0: 
+                        player_die_sound.play()
+                        death_explosion = Explosion(player.rect.center, 'player')
+                        all_sprites.add(death_explosion)
+                        player.hide()
+                        player.lives -= 1
+                        player.shield = 100
             ## check if the player collides with the mob
             hits = pygame.sprite.spritecollide(player, mobs, True, pygame.sprite.collide_circle)        ## gives back a list, True makes the mob element disappear
             for hit in hits:
