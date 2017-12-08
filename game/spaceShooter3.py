@@ -64,7 +64,7 @@ def main_menu():
 
     title = pygame.image.load(path.join(img_dir, "main.png")).convert()
     title = pygame.transform.scale(title, (WIDTH, HEIGHT), screen)
-
+    title = pygame.transform.rotate(title, 180)
     screen.blit(title, (0,0))
     pygame.display.update()
 
@@ -77,10 +77,12 @@ def main_menu():
                 pygame.quit()
                 quit()
         else:
-            draw_text(screen, "Player 1: Use [Arrow Keys] to Move, [ENTER] to Shoot", 30, WIDTH/2, HEIGHT/2-60)
-            draw_text(screen, "Player 2: Use [WASD] to Move, [TAB] to Shoot", 30, WIDTH/2, HEIGHT/2-20)
-            draw_text(screen, "Press [ENTER] To Begin", 30, WIDTH/2, HEIGHT/2+60)
-            draw_text(screen, "or [Q] To Quit", 30, WIDTH/2, (HEIGHT/2)+100)
+            draw_text(screen, "Player 1: Use [Arrow Keys] to Move, [ENTER] to Shoot", 30, WIDTH/2, HEIGHT/2+100)
+            draw_text(screen, "Player 2: Use [WASD] to Move, [TAB] to Shoot", 30, WIDTH/2, HEIGHT/2+60)
+            draw_text(screen, "Press [ENTER] To Begin", 30, WIDTH/2, HEIGHT/2-20)
+            draw_text(screen, "or [Q] To Quit", 30, WIDTH/2, (HEIGHT/2)-60)
+            #s = pygame.display.get_surface()
+            #s = pygame.transform.rotate(s, 180)
             pygame.display.update()
 
     #pygame.mixer.music.stop()
@@ -95,6 +97,7 @@ def draw_text(surf, text, size, x, y):
     ## selecting a cross platform font to display the score
     font = pygame.font.Font(font_name, size)
     text_surface = font.render(text, True, WHITE)       ## True denotes the font to be anti-aliased 
+    text_surface = pygame.transform.rotate(text_surface,180)
     text_rect = text_surface.get_rect()
     text_rect.midtop = (x, y)
     surf.blit(text_surface, text_rect)
@@ -560,7 +563,7 @@ with open(pipe_dir) as fifo:
             #clear all obstacles using a buffer
             obstacles_copy = obstacles
             for o in obstacles_copy:
-    	    o[1]=o[1]-1
+    	        o[1]=o[1]-1
                 if o[1]<=0:
                     obstacles.pop(0)
                 
@@ -581,7 +584,7 @@ with open(pipe_dir) as fifo:
                     tl_y = int(coordinates[i+1])
                     br_x = int(coordinates[i+2])
                     br_y = int(coordinates[i+3])
-                	newObstacle(tl_x,tl_y,br_x-tl_x,br_y-tl_y)
+                    newObstacle(tl_x,tl_y,br_x-tl_x,br_y-tl_y)
                 #pygame.draw.rect(screen,(255,0,0),(tl_x,tl_y,br_x-tl_x,br_y-tl_y),1)
                 #pygame.display.update()
             
@@ -688,18 +691,21 @@ with open(pipe_dir) as fifo:
             ## draw the stargaze.png image
             #screen.blit(background, background_rect)
             all_sprites.draw(screen)
-            draw_shield_bar(screen, 5, 5, player1.shield)
-            draw_shield_bar(screen, WIDTH - 5, 5, player2.shield)
+            draw_shield_bar(screen, 5, 10, player1.shield)
+            draw_shield_bar(screen, WIDTH - 120, 10, player2.shield)
+            draw_text(screen, "Player 1", 20, 50, 50)
+            draw_text(screen, "Player 2", 20, WIDTH-50, 50)
 
             # Draw lives
-            draw_lives(screen, 100, 5, player2.lives, player_mini_img)
-            draw_lives(screen, WIDTH - 100, 5, player2.lives, player_mini_img)
+            draw_lives(screen, 5, 30, player1.lives, player_mini_img)
+            draw_lives(screen, WIDTH - 100, 30, player2.lives, player_mini_img)
 
             ## Done after drawing everything to the screen
             pygame.display.flip()       
         #end screen
         screen.fill(BLACK)
         draw_text(screen, "Winner: Player "+str(players[0].player_num), 40, WIDTH/2, HEIGHT/2)
+        pygame.display.flip()
         pygame.display.update()
         pygame.time.wait(3000)
         #back to main menu
