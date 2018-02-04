@@ -8,11 +8,11 @@ The table can support a multitude of interactive experiences, The first we explo
 
 # System Design
 
-![alt tag](https://github.com/honeyimholm/Mixed-Reality-Table/blob/master/.png)
+![alt tag](https://github.com/honeyimholm/Mixed-Reality-Table/blob/master/pipeline.png)
 
 # CAD and Implementation
-![alt tag](https://github.com/honeyimholm/Mixed-Reality-Table/blob/master/pipeline.png)
-![alt tag](https://github.com/honeyimholm/Mixed-Reality-Table/blob/master/pipeline.png)
+![alt tag](https://github.com/honeyimholm/Mixed-Reality-Table/blob/master/stand_cad.png)
+![alt tag](https://github.com/honeyimholm/Mixed-Reality-Table/blob/master/stand_implementation.jpg)
 
 # Full Specification
 
