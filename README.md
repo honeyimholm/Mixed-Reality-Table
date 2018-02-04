@@ -6,4 +6,9 @@ The table can support a multitude of interactive experiences, The first we explo
 
 ![alt tag](https://github.com/honeyimholm/Mixed-Reality-Table/blob/master/demo_images/demo_gif_2.gif)
 
+# System Design
+
+![alt tag](https://github.com/honeyimholm/Mixed-Reality-Table/blob/master/pipeline.png)
+
 A full report of the system can be found [here](https://github.com/honeyimholm/Mixed-Reality-Table/blob/master/final_report.pdf)
+
