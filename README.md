@@ -12,7 +12,7 @@ The table can support a multitude of interactive experiences, The first we explo
 
 # CAD and Implementation
 ![alt tag](https://github.com/honeyimholm/Mixed-Reality-Table/blob/master/stand_cad.png)
-![alt tag](https://github.com/honeyimholm/Mixed-Reality-Table/blob/master/stand_implementation.jpg)
+![alt tag](https://github.com/honeyimholm/Mixed-Reality-Table/blob/master/stand_implementation.jpeg)
 
 # Full Specification
 
